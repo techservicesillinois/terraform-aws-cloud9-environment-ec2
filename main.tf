@@ -16,7 +16,7 @@ locals {
   subnet_id = "${data.aws_subnet_ids.selected.ids[0]}"
 }
 
-resource "aws_cloud9_environment_ec2" "example" {
+resource "aws_cloud9_environment_ec2" "default" {
   name                        = "${var.name}"
   instance_type               = "${var.instance_type}"
   automatic_stop_time_minutes = "${var.automatic_stop_time_minutes}"
