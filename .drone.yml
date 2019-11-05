@@ -1,7 +1,6 @@
 pipeline:
-    build:
-        image: hashicorp/terraform:light
-        commands:
-            - terraform version
-            - terraform validate -check-variables="false"
-            - terraform fmt -check=true
+  build:
+    image: hashicorp/terraform
+    commands:
+      - apk add make
+      - make
