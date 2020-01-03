@@ -1,0 +1,7 @@
+*.swp
+
+terraform.tfstate
+terraform.tfstate.*
+
+.terraform
+.terragrunt-cache
