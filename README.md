@@ -1,8 +1,8 @@
 # cloud9-environment-ec2
 
-[![Build Status](https://drone.techservices.illinois.edu/api/badges/techservicesillinois/terraform-aws-cloud9-environment-ec2/status.svg)](https://drone.techservices.illinois.edu/techservicesillinois/terraform-aws-cloud9-environment-ec2)
+[![Terraform actions status](https://github.com/techservicesillinois/terraform-aws-cloud9-environment-ec2/workflows/terraform/badge.svg)](https://github.com/techservicesillinois/terraform-aws-cloud9-environment-ec2/actions)
 
-Provides a Cloud9 EC2 Development Environment.
+Provides a Cloud9 EC2 development environment.
 
 Example Usage
 -----------------
