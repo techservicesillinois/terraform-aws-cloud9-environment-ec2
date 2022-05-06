@@ -1,30 +1,34 @@
 variable "name" {
-  description = "The name of the environment"
+  description = "Environment name"
 }
 
 variable "instance_type" {
-  description = "The type of instance to connect to the environment"
-  default     = "t2.nano"
+  description = "AWS instance type to assign"
 }
 
 variable "automatic_stop_time_minutes" {
-  description = "Minutes until the instance is shut down after inactivity"
+  description = "Minutes of inactivity before the instance is shut down"
   default     = 30
 }
 
 variable "description" {
-  description = "The description of the environment"
+  description = "Description of the environment"
 }
 
 variable "owner_arn" {
-  description = "The ARN of the environment owner"
+  description = "ARN of the environment owner"
+}
+
+variable "subnet_type" {
+  description = "Subnet type (e.g., 'campus', 'private', 'public') for resource placement"
+}
+
+variable "tags" {
+  description = "Mapping of tags to assign to resources"
+  type        = map(string)
+  default     = {}
 }
 
 variable "vpc" {
-  description = "VPC in which EC2 instance is to be placed"
-}
-
-variable "tier" {
-  description = "Network tier in which to place EC2 instance"
-  default     = "public"
+  description = "Name of VPC for resource placement"
 }

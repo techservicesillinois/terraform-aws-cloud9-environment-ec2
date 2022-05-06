@@ -18,6 +18,7 @@ module "service_name" {
 
   name        = "service"
   description = "Environment for service development"
+  subnet_type = "public"
   vpc         = "vpcName"
 
   owner_arn = "arn:aws:sts::917683843710:assumed-role/roleName/netid@illinois.edu"
@@ -28,19 +29,19 @@ Argument Reference
 
 The following arguments are supported:
 
+* `automatic_stop_time_minutes` - (Optional) Minutes until the instance is shut down after inactivity (default 30).
+
 * `name` - (Required) The name of the environment.
 
 * `description` - (Required) The description of the environment.
 
+* `instance_type` - (Required) The type of instance to connect to the environment.nano).
+
 * `owner_arn` - (Required) The ARN of the environment owner.
 
-* `vpc` - (Required) VPC in which EC2 instance is to be placed.
+* `subnet_type` - (Required) Subnet type (e.g., 'campus', 'private', 'public') for resource placement.
 
-* `tier` - (Optional) Network tier in which to place EC2 instance (default public).
-
-* `instance_type` - (Optional) The type of instance to connect to the environment (default t2.nano).
-
-* `automatic_stop_time_minutes` - (Optional) Minutes until the instance is shut down after inactivity (default 30).
+* `vpc` - (Required) Name of the virtual private cloud in which resources are to be placed.
 
 Attributes Reference
 --------------------

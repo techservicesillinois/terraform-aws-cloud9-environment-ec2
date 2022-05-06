@@ -1,27 +1,22 @@
-data "aws_availability_zones" "selected" {}
+# Choose a single random availability zone from map of AZs matching
+# the specified subnet_type.
 
-data "aws_vpc" "selected" {
-  tags = {
-    Name = var.vpc
-  }
+resource "random_shuffle" "az" {
+  input        = keys(module.get-subnets.subnets_by_az)
+  result_count = 1
 }
 
-data "aws_subnet" "selected" {
-  vpc_id = data.aws_vpc.selected.id
+module "get-subnets" {
+  source = "github.com/techservicesillinois/terraform-aws-util//modules/get-subnets?ref=v3.0.4"
 
-  filter {
-    name   = "availability-zone"
-    values = [local.az]
-  }
-
-  tags = {
-    Tier = var.tier
-  }
+  include_subnets_by_az = true
+  subnet_type           = var.subnet_type
+  vpc                   = var.vpc
 }
 
 locals {
-  az        = sort(data.aws_availability_zones.selected.names)[0]
-  subnet_id = data.aws_subnet.selected.id
+  availability_zone = random_shuffle.az.result[0]
+  subnet_id         = module.get-subnets.subnets_by_az[local.availability_zone][0]
 }
 
 resource "aws_cloud9_environment_ec2" "default" {
@@ -31,4 +26,7 @@ resource "aws_cloud9_environment_ec2" "default" {
   description                 = var.description
   owner_arn                   = var.owner_arn
   subnet_id                   = local.subnet_id
+  # Tag cannot have the key 'Name' as it is a reserved key by EC2.
+  # tags                      = merge({ "Name" = var.name }, var.tags)
+  tags = var.tags
 }
