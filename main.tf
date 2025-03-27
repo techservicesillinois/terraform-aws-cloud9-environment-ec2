@@ -7,7 +7,7 @@ resource "random_shuffle" "az" {
 }
 
 module "get-subnets" {
-  source = "github.com/techservicesillinois/terraform-aws-util//modules/get-subnets?ref=v3.0.4"
+  source = "github.com/techservicesillinois/terraform-aws-util//modules/get-subnets?ref=v3.0.5"
 
   include_subnets_by_az = true
   subnet_type           = var.subnet_type
