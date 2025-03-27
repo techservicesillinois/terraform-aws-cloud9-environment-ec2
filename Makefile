@@ -13,14 +13,13 @@ all: tfc test
 tfc: .terraform
 	@# Basic Terraform validation and formating checks
 	terraform version
-	AWS_DEFAULT_REGION=us-east-2 terraform validate
+	terraform validate
 	terraform fmt -check -recursive
 
 # Create .terraform if does not exist
 # A terraform init is requried to run a validate :-(
 .terraform:
 	terraform init -backend=false
-	terraform version
 
 test:
 	@####################################################
